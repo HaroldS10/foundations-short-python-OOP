@@ -83,7 +83,7 @@ class NodoInterface(ValorObtenible, HijosObtenibles, PadreObtenible, metaclass=A
     pass
 
 
-class Nodo(ValorObtenible, HijosObtenibles):
+class Nodo(ValorObtenible, HijosObtenibles, PadreObtenible):
     def __init__(self, valor: T):
       self.__valor = valor
       self.izquierda = None
@@ -100,22 +100,22 @@ class Nodo(ValorObtenible, HijosObtenibles):
     
     @izquierda.setter
     def izquierda(self, value: 'NodoInterface') -> None:
-        if value != None:
-            value.padre = self
-        
         self.__izquierda = value
+        if value != None:
+            value.__padre = self
+        
+
         
     @property
     def derecha(self) -> 'NodoInterface':
-        return self.derecha
+        return self.__derecha
     
     @derecha.setter
     def derecha(self, value: 'NodoInterface') -> None:
-        if value != None:
-            value.padre = self
-            
         self.__derecha = value
-
+        if value != None:
+            value.__padre = self
+            
     @property
     def padre(self) -> 'NodoInterface':
         return self.__padre
