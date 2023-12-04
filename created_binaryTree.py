@@ -83,7 +83,7 @@ class NodoInterface(ValorObtenible, HijosObtenibles, PadreObtenible, metaclass=A
     """
     pass
 
-class Nodo(ValorObtenible, HijosObtenibles, PadreObtenible):
+class Nodo(NodoInterface):
     def __init__(self, valor: T):
       self.__valor = valor
       self.izquierda = None
